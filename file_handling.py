@@ -23,5 +23,3 @@ class File_Handling:
         audio = AudioSegment.from_file(self.wav_filename, format = '.wav')
         audios = audio.split_to_mono()
         audio_final = audios[0].export(self.wav_filename, format = 'wav')
-
-test = File_Handling('M4a_files\\CS_test_recording.m4a')
