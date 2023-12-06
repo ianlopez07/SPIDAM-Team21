@@ -23,11 +23,13 @@ class File_Handling:
 
         # defaults for files that are already .wav and other unsupported extensions
         elif file_extension == '.wav':
-            self.wav_filename = file_path
+            self.wav_filename = 'NEW' + file_name + '.wav'
+            sound = AudioSegment.from_file(file_path, format = 'wav')
+            file_handle = sound.export(self.wav_filename, format = 'wav')
         else:
-            return 'ERROR in converting file. Please submit .m4a, .mp3, or .wav files only'
+            print('ERROR in converting file. Please submit .m4a, .mp3, or .wav files only')
 
-        # Reduces file to one channel
+        # reduces file to one channel
         audio = AudioSegment.from_file(self.wav_filename, format = '.wav')
         audios = audio.split_to_mono()
         audio_final = audios[0].export(self.wav_filename, format = 'wav')
