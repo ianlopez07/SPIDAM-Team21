@@ -3,6 +3,7 @@ import os
 from wavinfo import WavInfoReader
 from scipy.io import wavfile
 import scipy.io
+import taglib
 
 # class for handling the audio files
 class File_Handling:
@@ -34,10 +35,5 @@ class File_Handling:
         audios = audio.split_to_mono()
         audio_final = audios[0].export(self.wav_filename, format = 'wav')
 
-        # finds and removes the TAG metadata
-        with open(self.wav_filename, 'r+b') as file:
-            file.seek(-128, os.SEEK_END)
-            tag = file.read(3)
-            if tag == 'TAG':
-                file.write('\x00' * 128-3)
-        sys.exit()
+        with taglib.File(self.wav_filename, save_on_exit = True) as file:
+            del file.tags
