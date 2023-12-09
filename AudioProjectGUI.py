@@ -6,17 +6,19 @@ class AudioGUI:
         self.root = root
         self.root.title("Audio Converting / Modeling")
 
-        self.root.geometry("500x400")
+        self.root.geometry("500x450")
 
         self.create_widgets()
 
     def create_widgets(self):
         # Create a label
-        self.labeltitle = tk.Label(self.root, text="WIP GUI (Bound to change over course of project)")
+        self.labeltitle = tk.Label(self.root, text="AUDIO CONVERTING AND MODELING GUI")
         self.labeltitle.pack(pady=10, padx=20, anchor="w")
 
-        tk.Label(self.root, text="").pack() #These are just to make extra spaces between the labels and buttons on the GUI
+        tk.Label(self.root,
+                 text="").pack()  # These are just to make extra spaces between the labels and buttons on the GUI
 
+        # LABEL AND BUTTON FOR SELECTING THE FILE
         self.label1 = tk.Label(self.root, text="No file selected")
         self.label1.pack(pady=10, padx=20, anchor="w")
 
@@ -26,20 +28,30 @@ class AudioGUI:
 
         tk.Label(self.root, text="").pack()
 
-        self.label2 = tk.Label(self.root, text="Clean")
+        # LABEL AND BUTTON TO DISPLAY THE .WAV FILE
+        self.label2 = tk.Label(self.root, text="Display the .Wav")
         self.label2.pack(pady=10, padx=20, anchor="w")
 
-        self.open_button2 = tk.Button(self.root, text="Clean File")
-        self.open_button2.pack(pady=0, padx=20, anchor="w")
+        self.button2 = tk.Button(self.root, text="Display")
+        self.button2.pack(pady=0, padx=20, anchor="w")
 
         tk.Label(self.root, text="").pack()
 
-        self.label3 = tk.Label(self.root, text="Convert File to .Wav")
+        # LABEL AND BUTTON FOR THE GRAPH AND PLOTS
+        self.label3 = tk.Label(self.root, text="Display Graphing and Plotting")
         self.label3.pack(pady=10, padx=20, anchor="w")
 
-        self.open_button3 = tk.Button(self.root, text="Convert")
-        self.open_button3.pack(pady=0, padx=20, anchor="w")
+        self.button3 = tk.Button(self.root, text="Display Graph & Plots")
+        self.button3.pack(pady=0, padx=20, anchor="w")
 
+        tk.Label(self.root, text="").pack()
+
+        # LABEL AND BUTTON TO DISPLAY THE .WAV FILE
+        self.label4 = tk.Label(self.root, text="Combine the plots")
+        self.label4.pack(pady=10, padx=20, anchor="w")
+
+        self.button4 = tk.Button(self.root, text="Combine")
+        self.button4.pack(pady=0, padx=20, anchor="w")
     def open_audio_file(self):
         file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.mp3;*.wav")])
         if file_path:
