@@ -34,6 +34,3 @@ class File_Handling:
         audio = AudioSegment.from_file(self.wav_filename, format = '.wav')
         audios = audio.split_to_mono()
         audio_final = audios[0].export(self.wav_filename, format = 'wav')
-
-        with taglib.File(self.wav_filename, save_on_exit = True) as file:
-            del file.tags
