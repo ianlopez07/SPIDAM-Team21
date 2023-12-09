@@ -1,9 +1,7 @@
-import file_handling
 import numpy as np
 from scipy.io import wavfile
 import wave
 import numpy
-import librosa
 
 class File_Comp:
     def __init__(self, file):
