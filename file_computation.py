@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.io import wavfile
 import wave
-import numpy
 
 class File_Comp:
     def __init__(self, file):
@@ -13,7 +12,7 @@ class File_Comp:
 
     def high_resonance(self) -> float:
         wav_file = wave.open(self.file_path, rb)
-        audio_data = numpy.frombuffer(wav_file.readframes(wav_file.getnframes()), dtype = np.int16)
+        audio_data = np.frombuffer(wav_file.readframes(wav_file.getnframes()), dtype = np.int16)
         freq_spec = np.fft.fft(audio_data)
         sample_rate = wav_file.getframerate()
         freqs = np.fft.fftfreq(len(freq_spec), d = 1/sample_rate)
