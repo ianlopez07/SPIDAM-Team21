@@ -60,11 +60,18 @@ class AudioGUI:
         tk.Label(self.root, text="").pack()
 
         # LABEL AND BUTTON FOR FILE COMPUTATION INFO
-        self.label5= tk.Label(self.root, text="Compute File Info")
+        self.label5 = tk.Label(self.root, text="Compute File Info")
         self.label5.pack(pady=10, padx=20, anchor="w")
 
         self.button5 = tk.Button(self.root, text="Compute File Info", command=self.compute_file_info)
         self.button5.pack(pady=0, padx=20, anchor="w")
+
+        # LABEL AND BUTTON TO DISPLAY THE COMBINED PLOT STRING
+        self.label6 = tk.Label(self.root, text="Combined Reverb Plot:")
+        self.label6.pack(pady=10, padx=20, anchor="w")
+
+        self.result_label = tk.Label(self.root, text="")
+        self.result_label.pack(pady=5, padx=20, anchor="w")
 
     def open_audio_file(self):
         file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.m4a;*.mp3;*.wav")])
@@ -100,7 +107,8 @@ class AudioGUI:
     def display_all_reverb(self):
         if hasattr(self, 'handle'):
             plotter = Plot(self.handle.wav_filename)
-            plotter.reverb_combine()
+            result_string = plotter.reverb_combine()
+            self.result_label.config(text=result_string)
         else:
             print("No file selected.")
 
