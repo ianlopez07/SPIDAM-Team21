@@ -92,7 +92,8 @@ class AudioGUI:
         if hasattr(self, 'handle'):
             file_comp = File_Comp(self.handle.wav_filename)
             time_info = file_comp.return_time()
-            self.label5.config(text=f"File Length: {time_info} seconds")
+            resonance_info = file_comp.high_resonance()
+            self.label5.config(text=f"File Length: {time_info} seconds\nResonance Info: {resonance_info}")
         else:
             print("No file selected.")
 
