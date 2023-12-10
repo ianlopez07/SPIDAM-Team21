@@ -3,14 +3,14 @@ from tkinter import filedialog
 from file_computation import File_Comp
 from file_handling import File_Handling
 from Plotting import Plot
-import wave
+
 
 class AudioGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Audio Converting / Modeling")
 
-        self.root.geometry("500x450")
+        self.root.geometry("500x500")
 
         self.create_widgets()
 
@@ -19,7 +19,7 @@ class AudioGUI:
         self.labeltitle = tk.Label(self.root, text="AUDIO CONVERTING AND MODELING GUI")
         self.labeltitle.pack(pady=10, padx=20, anchor="w")
 
-        tk.Label(self.root,text="").pack()  # These are just to make extra spaces between the labels and buttons on the GUI
+        tk.Label(self.root,text="").pack()  #These are just to make extra spaces between the labels and buttons on the GUI
 
         # LABEL AND BUTTON FOR SELECTING THE FILE
         self.label1 = tk.Label(self.root, text="No file selected")
@@ -55,25 +55,53 @@ class AudioGUI:
 
         self.button4 = tk.Button(self.root, text="Combine", command=self.display_all_reverb)
         self.button4.pack(pady=0, padx=20, anchor="w")
+
+        tk.Label(self.root, text="").pack()
+
+        # LABEL AND BUTTON FOR FILE COMPUTATION INFO
+        self.label5= tk.Label(self.root, text="Compute File Info")
+        self.label5.pack(pady=10, padx=20, anchor="w")
+
+        self.button5 = tk.Button(self.root, text="Compute File Info", command=self.compute_file_info)
+        self.button5.pack(pady=0, padx=20, anchor="w")
+
     def open_audio_file(self):
         file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.mp3;*.wav")])
         if file_path:
             self.label1.config(text=f"Selected file: {file_path}")
-        handle = File_Handling(file_path)
+            self.handle = File_Handling(file_path)
+            self.compute_file_info()
 
     def display_waveform(self):
-        file_comp = File_Comp(File_Handling(self.label1.cget("text").replace("Selected File: ", "")))
-        file_comp.wave_file()
+        if hasattr(self, 'handle'):
+            plotter = Plot(self.handle.wav_filename)
+            plotter.wave_form()
+        else:
+            print("No file selected.")
 
     def display_graphs_and_plots(self):
-        plotter = Plot(self.label1.cget("text").replace("Selected file: ", ""))
-        plotter.display_graphs_and_plots()
+        if hasattr(self, 'handle'):
+            plotter = Plot(self.handle.wav_filename)
+            plotter.reverb_high()
+            plotter.reverb_mid()
+            plotter.reverb_low()
+        else:
+            print("No file selected.")
+
+    def compute_file_info(self):
+        if hasattr(self, 'handle'):
+            file_comp = File_Comp(self.handle.wav_filename)
+            time_info = file_comp.return_time()
+            self.label5.config(text=f"File Length: {time_info} seconds")
+        else:
+            print("No file selected.")
 
     def display_all_reverb(self):
-        plotter = Plot(self.label1.cget("text").replace("Selected file: ", ""))
-        plotter.reverb_high()
-        plotter.reverb_mid()
-        plotter.reverb_low()
+        if hasattr(self, 'handle'):
+            plotter = Plot(self.handle.wav_filename)
+            plotter.reverb_combine()
+        else:
+            print("No file selected.")
 
 if __name__ == "__main__":
     root = tk.Tk()
