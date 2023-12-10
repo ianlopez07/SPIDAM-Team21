@@ -108,7 +108,7 @@ class Plot:
         index_of_max_less_25 = np.where(data_in_db == value_of_max_less_25)
         plt.plot(self.t[index_of_max_less_25], data_in_db[index_of_max_less_25], 'ro')
 
-        rt20 = (self.t[index_of_max_less_5] - t[index_of_max_less_25])[0]
+        rt20 = (self.t[index_of_max_less_5] - self.t[index_of_max_less_25])[0]
 
         rt60 = 3 * rt20
 
@@ -229,7 +229,7 @@ class Plot:
 
         value_of_max_less_5 = find_nearest_value(sliced_array, value_of_max_less_5)
         index_of_max_less_5 = np.where(data_in_db == value_of_max_less_5)
-        plt.plot(t[index_of_max_less_5], data_in_db[index_of_max_less_5], 'yo')
+        plt.plot(self.t[index_of_max_less_5], data_in_db[index_of_max_less_5], 'yo')
 
         # slice array from a max-5dB
         value_of_max_less_25 = value_of_max - 25
@@ -294,7 +294,7 @@ class Plot:
 
         value_of_max_less_5 = find_nearest_value(sliced_array, value_of_max_less_5)
         index_of_max_less_5 = np.where(data_in_db == value_of_max_less_5)
-        plt.plot(t[index_of_max_less_5], data_in_db[index_of_max_less_5], 'yo')
+        plt.plot(self.t[index_of_max_less_5], data_in_db[index_of_max_less_5], 'yo')
 
         # slice array from a max-5dB
         value_of_max_less_25 = value_of_max - 25
