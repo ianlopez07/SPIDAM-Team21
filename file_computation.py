@@ -11,7 +11,7 @@ class File_Comp:
         return data.shape[0] / samplerate
 
     def high_resonance(self) -> float:
-        wav_file = wave.open(self.file_path, rb)
+        wav_file = wave.open(self.file_path, 'rb')
         audio_data = np.frombuffer(wav_file.readframes(wav_file.getnframes()), dtype = np.int16)
         freq_spec = np.fft.fft(audio_data)
         sample_rate = wav_file.getframerate()
