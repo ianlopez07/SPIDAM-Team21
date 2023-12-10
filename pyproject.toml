@@ -1,0 +1,44 @@
+import toml
+
+#Config.toml
+[gui]
+title = "Audio Converting / Modeling"
+geometry = "600x600"
+
+[file_types]
+audio_files = ["*.m4a", "*.mp3", "*.wav"]
+
+[audio_conversion]
+output_directory = "./output"
+supported_formats = [".m4a", ".mp3", ".wav"]
+channel_reduction = true
+
+[plotting]
+output_directory = "./output_plots"
+display_waveform = true
+display_reverb_high = true
+display_reverb_mid = true
+display_reverb_low = true
+display_reverb_combined = true
+
+[plotting.specgram]
+NFFT = 1024
+cmap = "autumn_r"
+
+[plotting.waveform]
+xlim_start = 1.025
+xlim_end = 1.0325
+
+[plotting.reverb_high]
+target_frequency = 5000
+
+[plotting.reverb_mid]
+target_frequency = 1000
+
+[plotting.reverb_low]
+target_frequency = 250
+
+[file_comp]
+output_directory = "./output_data"
+compute_time = true
+compute_high_resonance = true
