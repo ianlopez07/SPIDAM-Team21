@@ -1,16 +1,17 @@
 import tkinter as tk
 from tkinter import filedialog
+
+import Plotting
 from file_computation import File_Comp
 from file_handling import File_Handling
-from Plotting import Plot
-
+from Plotting import Plot, wave_form
 
 class AudioGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("Audio Converting / Modeling")
 
-        self.root.geometry("500x500")
+        self.root.geometry("600x600")
 
         self.create_widgets()
 
@@ -66,7 +67,7 @@ class AudioGUI:
         self.button5.pack(pady=0, padx=20, anchor="w")
 
     def open_audio_file(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.mp3;*.wav")])
+        file_path = filedialog.askopenfilename(filetypes=[("Audio Files", "*.m4a;*.mp3;*.wav")])
         if file_path:
             self.label1.config(text=f"Selected file: {file_path}")
             self.handle = File_Handling(file_path)
@@ -74,8 +75,7 @@ class AudioGUI:
 
     def display_waveform(self):
         if hasattr(self, 'handle'):
-            plotter = Plot(self.handle.wav_filename)
-            plotter.wave_form()
+            Plotting.wave_form(self.handle.wav_filename)
         else:
             print("No file selected.")
 
@@ -92,7 +92,8 @@ class AudioGUI:
         if hasattr(self, 'handle'):
             file_comp = File_Comp(self.handle.wav_filename)
             time_info = file_comp.return_time()
-            self.label5.config(text=f"File Length: {time_info} seconds")
+            resonance_info = file_comp.high_resonance()
+            self.label5.config(text=f"File Length: {time_info} seconds\nResonance Info: {resonance_info}")
         else:
             print("No file selected.")
 

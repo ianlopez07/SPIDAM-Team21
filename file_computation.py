@@ -4,7 +4,7 @@ import wave
 
 class File_Comp:
     def __init__(self, file):
-        self.file_path = file.wav_filename
+        self.file_path = file
 
     def return_time(self):
         samplerate, data = wavfile.read(self.file_path)

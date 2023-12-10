@@ -12,7 +12,7 @@ class File_Handling:
         # find file name/path and its extension
         file_name, file_extension = os.path.splitext(file_path)
 
-        # if statements for converting .m4a and .mp3 files
+        # if statements for converting .m4a and .mp3 files and removes metadata
         if file_extension == '.m4a':
             self.wav_filename = file_name + '.wav'
             sound = AudioSegment.from_file(file_path, format='m4a')
@@ -24,7 +24,7 @@ class File_Handling:
 
         # defaults for files that are already .wav and other unsupported extensions
         elif file_extension == '.wav':
-            self.wav_filename = 'NEW' + file_name + '.wav'
+            self.wav_filename = file_name + 'NEW' + '.wav'
             sound = AudioSegment.from_file(file_path, format = 'wav')
             file_handle = sound.export(self.wav_filename, format = 'wav')
         else:
