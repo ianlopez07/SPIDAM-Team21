@@ -118,7 +118,6 @@ class Plot:
 
         plt.show()
 
-        self.rt60_high = round(abs(rt60), 2)
         print(f'The RT60 reverb time a freq {int(find_target_frequency())}Hz is {round(abs(rt60), 2)} seconds')
 
     ##reverb plot with mid frequency
@@ -181,8 +180,6 @@ class Plot:
         plt.grid()
 
         plt.show()
-
-        self.rt60_mid = round(abs(rt60), 2)
 
         print(f'The RT60 reverb time a freq {int(find_target_frequency())}Hz is {round(abs(rt60), 2)} seconds')
 
@@ -247,8 +244,6 @@ class Plot:
 
         plt.show()
 
-        self.rt60_low = round(abs(rt60), 2)
-
         print(f'The RT60 reverb time a freq {int(find_target_frequency())}Hz is {round(abs(rt60), 2)} seconds')
 
     #combine plot
@@ -306,7 +301,7 @@ class Plot:
 
         rt20 = (self.t[index_of_max_less_5] - self.t[index_of_max_less_25])[0]
 
-        rt60 = 3 * rt20
+        self.rt60_high = 3 * rt20
 
         ##reverb plot with mid frequency
 
@@ -362,7 +357,7 @@ class Plot:
 
         rt20 = (self.t[index_of_max_less_5] - self.t[index_of_max_less_25])[0]
 
-        rt60 = 3 * rt20
+        self.rt60_mid = 3 * rt20
 
         ##reverb plot with low frequency
 
@@ -418,12 +413,12 @@ class Plot:
 
         rt20 = (self.t[index_of_max_less_5] - self.t[index_of_max_less_25])[0]
 
-        rt60 = 3 * rt20
+        self.rt60_low = 3 * rt20
 
         plt.grid()
 
         plt.show()
 
-        self.rt60_avg = (self.rt60_high + self.rt60_mid + self.rt60_low) / 3
+        self.rt60_avg = round(abs((self.rt60_high + self.rt60_mid + self.rt60_low) / 3), 2)
         self.rt60_diff = self.rt60_avg - 0.5
-        return f'Average RT60 time is {self.rt60_avg} and difference in RT60 time (to 0.5 seconds) is {self.rt60_diff}'
+        return f'Average RT60 time: {self.rt60_avg} seconds\nDifference in RT60 time (to 0.5 seconds): {self.rt60_diff} seconds'

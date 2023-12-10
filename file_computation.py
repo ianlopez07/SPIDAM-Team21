@@ -17,4 +17,4 @@ class File_Comp:
         sample_rate = wav_file.getframerate()
         freqs = np.fft.fftfreq(len(freq_spec), d = 1/sample_rate)
         peak_index = np.argmax(np.abs(freq_spec))
-        return freqs[peak_index]
+        return round(freqs[peak_index], 2)

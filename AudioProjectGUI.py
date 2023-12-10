@@ -100,7 +100,7 @@ class AudioGUI:
             file_comp = File_Comp(self.handle.wav_filename)
             time_info = file_comp.return_time()
             resonance_info = file_comp.high_resonance()
-            self.label5.config(text=f"File Length: {time_info} seconds\nResonance Info: {resonance_info}")
+            self.label5.config(text=f"File Length: {time_info} seconds\nResonance Info: {resonance_info} Hz")
         else:
             print("No file selected.")
 
