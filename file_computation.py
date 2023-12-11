@@ -8,7 +8,7 @@ class File_Comp:
 
     def return_time(self):
         samplerate, data = wavfile.read(self.file_path)
-        return data.shape[0] / samplerate
+        return round(data.shape[0] / samplerate, 2)
 
     def high_resonance(self) -> float:
         wav_file = wave.open(self.file_path, 'rb')
