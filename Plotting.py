@@ -53,6 +53,7 @@ class Plot:
         self.path = path
         self.sample_rate, self.data = wavfile.read(self.path)
         self.spectrum, self.freq, self.t, self.im = plt.specgram(self.data, Fs=self.sample_rate, NFFT=1024, cmap=plt.get_cmap('autumn_r'))
+        plt.title('Spectragram')
         plt.show()
         self.rt60_high, self.rt60_mid, self.rt60_low, self.rt60_avg, self.rt60_diff = 0, 0, 0, 0, 0
 
@@ -115,7 +116,7 @@ class Plot:
         rt60 = 3 * rt20
 
         plt.grid()
-
+        plt.title('RT60 (High)')
         plt.show()
 
         print(f'The RT60 reverb time a freq {int(find_target_frequency())}Hz is {round(abs(rt60), 2)} seconds')
@@ -178,7 +179,7 @@ class Plot:
         rt60 = 3 * rt20
 
         plt.grid()
-
+        plt.title('RT60 (Mid)')
         plt.show()
 
         print(f'The RT60 reverb time a freq {int(find_target_frequency())}Hz is {round(abs(rt60), 2)} seconds')
@@ -241,7 +242,7 @@ class Plot:
         rt60 = 3 * rt20
 
         plt.grid()
-
+        plt.title('RT60 (Low)')
         plt.show()
 
         print(f'The RT60 reverb time a freq {int(find_target_frequency())}Hz is {round(abs(rt60), 2)} seconds')
@@ -416,7 +417,7 @@ class Plot:
         self.rt60_low = 3 * rt20
 
         plt.grid()
-
+        plt.title('RT60 (Combined)')
         plt.show()
 
         self.rt60_avg = round(abs((self.rt60_high + self.rt60_mid + self.rt60_low) / 3), 2)
