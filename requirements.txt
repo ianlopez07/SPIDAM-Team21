@@ -1,0 +1,28 @@
+PACKAGE REQUIREMENTS (most will already be installed on Python3 Compilers but some will need installing like the list below)
+------------------------------------------------------------------------------------------------------------------------------
+matplotlib == 3.8.2
+numpy == 1.16.2
+pydub == 0.25.1
+pyparsing == 3.1.1
+ffmpeg == 1.4 
+scipy == 1.11.4
+toml == 0.10.2
+
+usage of pip show and pip install -r would be reccomended for viewing and installing packages
+
+
+FILE REQUIREMENTS
+------------------
+AudioProjectGUI.py
+file_handling.py
+Plotting.py
+file_computation.py
+
+
+SYSTEM REQUIREMENTS FOR PYCHARM
+--------------------------------
+4 GB of Free RAM
+Any modern CPU
+3.5 GB of Disk Space
+Operating system of Windows 10 or later
+ 	Operation of MacOS 11.0 ot later
